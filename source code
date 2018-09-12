@@ -1,0 +1,138 @@
+#include <bits/stdc++.h>
+using namespace std;
+void genesisNodeCreation();
+void createChildNodes();
+void createChildNode();
+void encryptDecryptData();
+void verifyOwner();
+void editValueofaNode();
+void transferOwner();
+void longestChainofGenesis();
+void longestChainofAny();
+void merge2Nodes();
+
+float nodeValSum=0;
+float genesisVal=0; 
+
+class node {
+    char* timestamp;
+    static int nodeNumber;
+    char nodeId[32];
+    vector<char> HashValue;
+    vector<char> data;
+    int id;
+    float val;
+    public:
+    
+    node(int id, float val, char name[]){
+    time_t now = time(0);
+    timestamp = ctime(&now);
+    nodeNumber++;
+    cout<<endl<<timestamp;
+    id=id;
+    val=val;
+     data.push_back(id);
+     data.push_back(pow(val,2));
+     for(unsigned int i=0;i<strlen(name);i++)
+     data.push_back(name[i]);
+     
+     string data2(data.begin(),data.end());
+     cout<<endl<<data2;
+    }
+    node* referenceNodeId;
+    node* rightchildReferenceNodeId;
+    node* leftchildReferenceNodeId;
+    node* genesisnode;
+};
+ int node::nodeNumber = 0;
+ node* genesisnode;
+int main() {
+    int z;
+    do {
+        cin>>z;
+        switch(z){
+            case 1 : genesisNodeCreation();
+            break;
+            case 2 : createChildNodes();
+            break;
+            case 3 : createChildNode();
+            break;
+            case 4 : encryptDecryptData();
+            break;
+            case 5 : verifyOwner();
+            break;
+            case 6 : editValueofaNode();
+            break;
+            case 7 : transferOwner();
+            break;
+            case 8 : longestChainofGenesis();
+            break;
+            case 9 : longestChainofAny();
+            break;
+            case 10 : merge2Nodes();
+            break;
+            case 11 : 
+            break;
+            default :  
+            cout<< "Enter Z again";
+        }
+    }while(z!=11);
+}
+void genesisNodeCreation(){
+    float val;
+    int id;
+    char name[20];
+    cin>>id;
+    cin>>val;
+    cin>>name;
+    node* A = new node(id,val,name);
+    A->referenceNodeId = NULL;
+    A->rightchildReferenceNodeId = NULL;
+    A->leftchildReferenceNodeId = NULL;
+    A->genesisnode = A;
+    genesisnode = A;
+    genesisVal = val;
+}
+void createChildNodes(){
+    float val;
+    int id;
+    char name[20];
+    cin>>id;
+    cin>>val;
+    cin>>name;
+    nodeValSum +=val;
+    if(nodeValSum<genesisVal){ 
+    node* B = new node(id,val,name);
+    B->referenceNodeId = NULL;
+    B->rightchildReferenceNodeId = NULL;
+    B->leftchildReferenceNodeId = NULL;
+    B->genesisNode =  genesisnode;
+    }
+    else{
+        cout<<"\nCant create node, since sum of nodes exceeds value of genesis node";
+    }
+}
+void createChildNode(){
+cout<<"createChildNode";
+}
+void encryptDecryptData(){
+cout<<"encryptdecryptData";
+}
+void verifyOwner(){
+cout<<"verifyOwner"
+}
+void editValueofaNode(){
+cout<<"editValueofaNode";
+}
+void transferOwner(){
+cout<<"transferOwner";
+}
+void longestChainofGenesis(){
+cout<<"longestChainofGenesis";
+}
+void longestChainofAny(){
+    cout<<"longestChainofAny";
+}
+void merge2Nodes(){
+cout<<"merge2Nodes";
+}
